@@ -1,0 +1,95 @@
+import { test, expect } from '@playwright/test';
+import { login } from '../agentlogin';
+
+test('Agentfile login', async ({ page }) => {
+  await login(page);
+  // now continue your test
+  await expect(page).toHaveURL(/login/); // Yha call ho rha hai login page
+
+  await page.locator('a[href="#/customers/corporatelist"]').click();
+  await page.getByText('Customer', { exact: true }).click();
+  await page.getByRole('textbox', { name: 'Company Name *' }).click();
+  await page.getByRole('textbox', { name: 'Company Name *' }).fill('Accenture pvt lts');
+  await page.getByLabel('Business Registration Type *').selectOption('RHB002');
+  await page.getByLabel('Nature of Business *').selectOption('RHT002');
+  await page.getByRole('textbox', { name: 'Business Authorized Person*' }).click();
+  await page.getByRole('textbox', { name: 'Business Authorized Person*' }).fill('Adam');
+  await page.getByRole('textbox', { name: 'Mobile Number *' }).click();
+  await page.getByRole('textbox', { name: 'Mobile Number *' }).fill('123456789');
+  await page.getByRole('textbox', { name: 'Email Id *' }).click();
+  await page.getByRole('textbox', { name: 'Email Id *' }).fill('test@test.com');
+  await page.getByLabel('Purpose of Opening Business').selectOption('100003');
+  await page.getByLabel('Expected vol. of txn. in a').selectOption('100005');
+  await page.getByRole('textbox', { name: 'License Number *' }).click();
+  await page.getByRole('textbox', { name: 'License Number *' }).fill('LIC34567');
+  await page.getByLabel('License Country *').selectOption('MWI');
+  await page.getByRole('button').nth(4).click();
+  await page.getByLabel('Select year').selectOption('2034');
+  await page.getByLabel('Thursday, April 27,').getByText('27').click();
+  await page.getByRole('button').nth(3).click();
+  await page.getByLabel('Thursday, April 2,').getByText('2', { exact: true }).click();
+  await page.getByRole('link').filter({ hasText: /^$/ }).nth(1).click();
+  await page.locator('#docType').click();
+  await page.locator('#docType').selectOption('Certificate of Incorporation');
+  await page.setInputFiles('#file', 'C:/Users/Lalit/Desktop/Office-detail/LillyTech-Image.jpg');
+  await page.locator('button[type="submit"]:has-text("Upload")').click();
+  await page.getByRole('button', { name: 'Close' }).click();
+  await page.getByRole('textbox', { name: 'Address Line1 *' }).click();
+  await page.getByLabel('Country *', { exact: true }).selectOption('MWI');
+  await page.getByRole('textbox', { name: 'Address Line1 *' }).click();
+  await page.getByRole('textbox', { name: 'Address Line1 *' }).fill('Malawi');
+  await page.getByRole('textbox', { name: 'State *' }).click();
+  await page.getByRole('textbox', { name: 'State *' }).fill('malswi');
+  await page.getByRole('textbox', { name: 'State *' }).press('ArrowLeft');
+  await page.getByRole('textbox', { name: 'State *' }).press('ArrowLeft');
+  await page.getByRole('textbox', { name: 'State *' }).press('ArrowLeft');
+  await page.getByRole('textbox', { name: 'State *' }).fill('malawi');
+  await page.getByRole('textbox', { name: 'City *' }).click();
+  await page.getByRole('textbox', { name: 'City *' }).fill('Malawi');
+  await page.getByRole('textbox', { name: 'Pin Code *' }).click();
+  await page.getByRole('textbox', { name: 'Pin Code *' }).fill('322214');
+  await page.getByRole('button', { name: 'Next ' }).click();
+  
+  await page.waitForTimeout(5000);
+
+  await page.getByLabel('Owner Type *').selectOption('100001');
+  await page.getByRole('textbox', { name: 'Shareholder First Name *' }).click();
+  await page.getByRole('textbox', { name: 'Shareholder First Name *' }).fill('Nitesh');
+  await page.getByRole('textbox', { name: 'Shareholder Last Name *' }).click();
+  await page.getByRole('textbox', { name: 'Shareholder Last Name *' }).fill('kumar');
+  await page.getByRole('button').nth(2).click();
+  //await page.pause();
+  await page.getByLabel('Wednesday, April 2,').getByText('2', { exact: true }).click();
+  await page.locator('#gender').selectOption('male');
+  await page.getByLabel('Nationality *').selectOption('MWI');
+  await page.getByRole('textbox', { name: 'Mobile Number *' }).click();
+  await page.getByRole('textbox', { name: 'Mobile Number *' }).fill('123456789');
+  await page.getByRole('textbox', { name: 'Email Id *' }).click();
+  await page.getByRole('textbox', { name: 'Email Id *' }).fill('test@test.com');
+  await page.getByRole('textbox', { name: 'Address Line1 *' }).click();
+  await page.getByRole('textbox', { name: 'Address Line1 *' }).fill('malawi');
+  await page.getByLabel('Residence Status *').selectOption('100004');
+  await page.getByRole('textbox', { name: 'State *' }).click();
+  await page.getByRole('textbox', { name: 'State *' }).fill('Malawi');
+  await page.getByRole('textbox', { name: 'City *' }).click();
+  await page.getByRole('textbox', { name: 'City *' }).fill('322215');
+  await page.getByRole('textbox', { name: 'ID Number *' }).click();
+  await page.getByRole('textbox', { name: 'ID Number *' }).fill('ID23');
+  await page.getByLabel('ID Type *').selectOption('RHD007');
+  await page.getByRole('button').nth(4).click();
+  await page.getByLabel('Wednesday, April 1,').getByText('1', { exact: true }).click();
+  await page.getByRole('button').nth(5).click();
+  await page.getByLabel('Select year').selectOption('2036');
+  await page.getByText('30', { exact: true }).click();
+  await page.getByRole('spinbutton', { name: 'Ownership Precentage *' }).click();
+  await page.getByRole('spinbutton', { name: 'Ownership Precentage *' }).click();
+  await page.getByRole('spinbutton', { name: 'Ownership Precentage *' }).dblclick();
+  await page.getByRole('spinbutton', { name: 'Ownership Precentage *' }).click();
+  await page.getByRole('spinbutton', { name: 'Ownership Precentage *' }).fill('10');
+  await page.getByRole('button', { name: '+ Add Owner' }).click();
+  await page.getByRole('textbox', { name: 'Pin Code *' }).click();
+  await page.getByRole('textbox', { name: 'Pin Code *' }).fill('1234');
+  await page.getByRole('button', { name: '+ Add Owner' }).click();
+  await page.getByRole('button', { name: 'Submit' }).click();
+  
+ });

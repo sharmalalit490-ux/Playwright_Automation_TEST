@@ -1,17 +1,15 @@
 import { test, expect } from '@playwright/test';
-import { login } from '../../agentlogin';
+import { agentLogin } from '../../../Aexercise/commonfunHelper';
 
-test('Agentfile login', async ({ page }) => {
-  await login(page);
-  // now continue your test
-  await expect(page).toHaveURL(/login/); // Yha call ho rha hai login page  
+test('C2B LIGHTNET', async ({ page }) => {
+
+  await agentLogin(page, '1000009109', 'Admin@123'); // login file yha call ho rhe hai
 
   test.setTimeout(120000);
 
   for (let i = 1; i <= 4; i++) {
 
-   console.log(i);
-
+  console.log(i);
 
   await page.locator('a[href="#/payout/c2b"]').click();
   await page.getByText('New Customer').click();

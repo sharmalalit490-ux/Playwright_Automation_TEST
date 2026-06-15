@@ -2,7 +2,8 @@ import { test } from '@playwright/test';
 import { login } from './LoginHelper';
 
 test('Admin login file', async ({ page }) => {
-  await login(page);  // 🔥 yaha call ho raha hai
+  await login(page);  // yaha call ho raha hai
+
 
   await page.getByRole('link', { name: 'Manual Adjustment' }).click();
   await page.locator('#fromAccountType').selectOption('100006');

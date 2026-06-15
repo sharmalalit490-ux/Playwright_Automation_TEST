@@ -1,12 +1,11 @@
 import { test, expect } from '@playwright/test';
-import { login } from '../agentlogin';
+import { agentLogin } from '../../Aexercise/commonfunHelper';
 
-test('Agentfile login', async ({ page }) => {
-  await login(page);
-  // now continue your test
-  await expect(page).toHaveURL(/login/); // Yha call ho rha hai login page  
+test('Add Individual beneficiary', async ({ page }) => {
 
-//   await page.pause();
+  await agentLogin(page, '1000009109', 'Admin@123');
+
+  //   await page.pause();
   await page.locator('a[href="#/customers/corporatelist"]').click();
   await page.locator('a:nth-child(7)').first().click();
   await page.getByText('Add Individual Beneficiary').click();

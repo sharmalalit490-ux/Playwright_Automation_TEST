@@ -1,10 +1,9 @@
 import { test, expect } from '@playwright/test';
-import { login } from '../../agentlogin';
+import { agentLogin } from '../../../Aexercise/commonfunHelper';
 
-test('Agentfile login', async ({ page }) => {
-  await login(page);
-  // now continue your test
-  await expect(page).toHaveURL(/login/); // Yha call ho rha hai login page  
+test('B2C LIGHTNET', async ({ page }) => {
+
+await agentLogin(page, '1000009109', 'Admin@123'); // login file yha call ho rhe hai
 
 test.setTimeout(120000);
 

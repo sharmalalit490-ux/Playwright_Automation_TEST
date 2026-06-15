@@ -1,10 +1,9 @@
 import { test, expect } from '@playwright/test';
-import { login } from '../agentlogin';
+import { agentLogin } from '../../Aexercise/commonfunHelper';
 
-test('Agent login file', async ({ page }) => {
-  await login(page);
-  // now continue your test
-  await expect(page).toHaveURL(/login/); // Yha call ho rha hai login page
+test('Customer', async ({ page }) => {
+
+  await agentLogin(page, '1000009109', 'Admin@123');
 
   
   await page.getByText('Individual').click();

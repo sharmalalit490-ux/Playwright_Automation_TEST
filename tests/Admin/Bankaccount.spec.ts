@@ -1,8 +1,13 @@
 import { test } from '@playwright/test';
 import { login } from './LoginHelper';
 
+import { makerLogin } from '../Aexercise/commonfunHelper';
+import { claimEntity} from '../Aexercise/commonfunHelper'
+import { viewEntity} from '../Aexercise/commonfunHelper'
+import{approveEntity } from '../Aexercise/commonfunHelper'
+
 test('Admin login file', async ({ page }) => {
-  await login(page);  // 🔥 yaha call ho raha hai
+  await login(page);  // LoginHelper.ts file yaha call ho raha hai
 
   await page.getByRole('link', { name: 'Bank Account' }).click();
   await page.getByText('Add Bank/Collection Account').click();
@@ -23,14 +28,15 @@ test('Admin login file', async ({ page }) => {
   await page.locator('#accountType').selectOption('100001');
   await page.locator('#finInstitutionCode').click();
   await page.locator('#accountName').click();
-  await page.locator('#accountName').click();
   await page.locator('#accountName').fill('Billas');
   await page.locator('#finInstitutionCode').click();
-  await page.locator('#finInstitutionCode').fill('HDFC bank');
+  await page.locator('#finInstitutionCode').fill('IDFC bank');
   await page.locator('#finInstitutionCode').press('ArrowLeft');
   await page.locator('#finInstitutionCode').press('ArrowLeft');
   await page.locator('#finInstitutionCode').press('ArrowLeft');
+  await page.locator('#finInstitutionCode').click();
   await page.locator('#finInstitutionCode').fill('HDFC Bank');
+  await page.pause();
   await page.locator('#branchNameAndAddress').click();
   await page.locator('#branchNameAndAddress').fill('Jaipur');
   await page.locator('#accountNumber').click();
@@ -52,5 +58,11 @@ test('Admin login file', async ({ page }) => {
   await page.locator('#confirmAccountNumber').click();
   await page.locator('#confirmAccountNumber').fill('987654321');
   await page.getByRole('button', { name: 'Done' }).click();
+
+  await makerLogin(page, 'lalit.maker', 'Admin@1234');// commonfunHelper Maker login call ho rha hai
+  await claimEntity(page);
+  await viewEntity(page);
+  await approveEntity(page);
+
 
 });

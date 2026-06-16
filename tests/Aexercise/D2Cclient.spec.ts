@@ -11,29 +11,26 @@ test('test', async ({ page }) => {
  
   await page.locator('a[href="#/wallet-owner"] span').click();
   await page.locator('a:has-text("Add D2C Client")').click();
-  // Send Client Name
+  // D2C Client Name
 await page.locator('#operatorName').click();
 const operatorNameSuffix = Math.floor(10 + Math.random() * 90);
 const operatorName = `Abha${operatorNameSuffix}at`;
 await page.locator('#operatorName').fill(operatorName);
 console.log('Operator Name:', operatorName);
+ //await page.pause();
 
-  //Send Client Email
-await page.locator('#operatorEmail').click();
+//Send Client Email
+const letters = 'abcdefghijklmnopqrstuvwxyz';
+const randomChars =
+letters[Math.floor(Math.random() * letters.length)] +
+letters[Math.floor(Math.random() * letters.length)];
+const email = `abhay${randomChars}@remittanceshub.com`;
+await page.locator('#operatorEmail').fill(email);
+console.log(email);
 
-  const randomChars =
-  String.fromCharCode(97 + Math.floor(Math.random() * 26)) +
-  String.fromCharCode(97 + Math.floor(Math.random() * 26));
-
-   const email = `Abhay${randomChars}@remittanceshub.com`;
-   await page.locator('#operatorEmail').fill(email);
-   console.log('Email:', email);
-
-  // Country
-  await page.locator('#registerCountryCode').selectOption('100132');
+// Country
+ await page.locator('#registerCountryCode').selectOption('100132');
   
-  await page.pause();
-//   
   // SELECT Settlement currency 
   await page.locator('span').filter({ hasText: 'Select' }).first().click();
   await page.getByText('USD-USA').nth(1).click();
@@ -53,7 +50,7 @@ await page.locator('#operatorEmail').click();
   await page.locator('#regulatoryLicenceType').fill('REGLIC98765');
 
   await page.locator('#authorizePersonName').click();
-  await page.locator('#authorizePersonName').fill('Remittanceshub');
+  await page.locator('#authorizePersonName').fill(operatorName);
 
   // await page.pause();
   const randomPhone = '941400' + Math.floor(1000 + Math.random() * 9000);
@@ -62,8 +59,9 @@ await page.locator('#operatorEmail').click();
 
   await page.locator('#authorizePersonId').click();
   const authorizePersonIdSuffix = Math.floor(10 + Math.random() * 90);
-  const authorizePersonname = `Ak${operatorNameSuffix}at`;
-  await page.locator('#authorizePersonId').fill('authorizePersonname');
+  const authorizePersonID = `Ak${authorizePersonIdSuffix}at`;
+  await page.locator('#authorizePersonId').fill(authorizePersonID);
+  console.log('Authorize Person ID:', authorizePersonID);
  
 //Select Date
   await page.getByRole('button', { name: 'event' }).nth(1).click();
